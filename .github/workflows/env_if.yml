@@ -1,0 +1,20 @@
+name: Hello $NAME
+
+# Event trigger qui implique de déclencher le workflow
+on: workflow_dispatch
+
+env:
+  NAME: Raymond
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "dis bonjour"
+        
+        if: ${{ env.NAME != 'Raymond' }}
+        run: echo "Salut mais qui est tu ?, tu n'es pas $NAME ! "
+
+      - name: "Hello $NAME"
+        if: ${{ env.NAME == 'Raymond' }}
+        run: echo "Salut $NAME ! force et honneur !"
