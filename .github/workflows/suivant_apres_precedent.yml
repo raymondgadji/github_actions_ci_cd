@@ -1,0 +1,26 @@
+name: Exercice Suivant après prédédent
+
+on:
+  workflow_run:
+    workflows: ["Exercice Merge message"]     # ← référence exacte au nom précédent
+    types:
+      - completed                             # se déclenche quand le précédent finit
+    branches: [main]                      # si vous voulez limiter aux merges sur main
+
+jobs:
+  afficher-message:
+    runs-on: ubuntu-latest
+    
+    # Optionnel : ne s'exécute que si le workflow précédent a réussi
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    
+    steps:
+      - name: Afficher le message final
+        run: |
+          echo "======================================"
+          echo "Le workflow 'Exercice Merge message' est terminé !"
+          echo "Tout s'est bien passé → on passe à la suite 🚀"
+          echo "Date/heure : $(date)"
+          echo "Conclusion du workflow précédent : ${{ github.event.workflow_run.conclusion }}"
+          echo "======================================"
+      

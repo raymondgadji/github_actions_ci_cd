@@ -1,0 +1,33 @@
+# .github/workflows/manuel-deux-etapes.yml
+name: Exercice Manuel - Deux étapes successives
+
+on:
+  workflow_dispatch:    # ← permet le déclenchement manuel depuis l'interface GitHub
+
+jobs:
+
+  etape-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Message étape 1
+        run: |
+          echo "======================================"
+          echo "ÉTAPE 1 : je suis le démarrage manuel"
+          echo "Ceci est la première partie du workflow"
+          echo "Date → $(date)"
+          echo "======================================"
+          echo "Fin de l'étape 1 - je peux maintenant lancer l'étape 2"
+
+  etape-2:
+    needs: etape-1          # ← ceci force l'exécution après etape-1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Message étape 2
+        run: |
+          echo "======================================"
+          echo "ÉTAPE 2 : suite après l'étape 1"
+          echo "Le workflow manuel a bien executé l'étape 1"
+          echo "On continue ! 🚀"
+          echo "Date → $(date)"
+          echo "Conclusion de l'étape 1 → ${{ needs.etape-1.result }}"
+          echo "======================================"
