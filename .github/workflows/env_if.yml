@@ -1,4 +1,4 @@
-name: Hello $NAME
+name: Hello Raymond
 
 # Event trigger qui implique de déclencher le workflow
 on: workflow_dispatch
