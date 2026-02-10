@@ -1,6 +1,7 @@
 name: Exercice Nouvelle Issue
 
 on:
+  workflow_dispatch:
   issues:
     types: [opened]
         
