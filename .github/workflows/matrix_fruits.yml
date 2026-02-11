@@ -1,0 +1,22 @@
+name: Matrix Fruits Workflow
+on:
+  workflow_dispatch:
+jobs:
+  fruits_combinaison_matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        version: [22.x]
+        first_name: [Abdou, Lamine, Gadji]
+        fruit: [apple, banana, cherry, mango]
+        
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
+
+      - name: Combinaison of fruits and names
+        run: echo "${{ matrix.first_name }} mange une ${{ matrix.fruit }} et il aime çà !!!"
+
+          
