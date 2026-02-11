@@ -1,6 +1,7 @@
 name: Exercice Suivant après prédédent
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["Exercice Merge message"]     # ← référence exacte au nom précédent
     types:
